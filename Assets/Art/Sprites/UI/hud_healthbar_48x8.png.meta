@@ -115,7 +115,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hud_healthbar_48x8_0
+      name: hp_3
       rect:
         serializedVersion: 2
         x: 0
@@ -137,7 +137,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hud_healthbar_48x8_1
+      name: hp_2
       rect:
         serializedVersion: 2
         x: 0
@@ -159,7 +159,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hud_healthbar_48x8_2
+      name: hp_1
       rect:
         serializedVersion: 2
         x: 0
@@ -181,7 +181,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hud_healthbar_48x8_3
+      name: hp_0
       rect:
         serializedVersion: 2
         x: 0
@@ -218,10 +218,10 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":48.0,"y":8.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      hud_healthbar_48x8_0: 5299767773337131005
-      hud_healthbar_48x8_1: -1162975650
-      hud_healthbar_48x8_2: 1553093342
-      hud_healthbar_48x8_3: 1333296807
+      hp_0: 1333296807
+      hp_1: 1553093342
+      hp_2: -1162975650
+      hp_3: 5299767773337131005
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
