@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -17,9 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        moveInput = 0f;
-        if (Keyboard.current.aKey.isPressed) moveInput = -1f;
-        if (Keyboard.current.dKey.isPressed) moveInput = 1f;
+        moveInput = Input.GetAxisRaw("Horizontal");
 
         if (moveInput != 0)
             sr.flipX = moveInput < 0;
