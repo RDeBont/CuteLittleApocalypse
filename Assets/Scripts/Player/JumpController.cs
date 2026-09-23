@@ -16,6 +16,9 @@ public class JumpController : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        if (groundCheck == null)
+            Debug.LogError("groundCheck is niet toegewezen in de Inspector!");
     }
 
     void Update()
@@ -24,14 +27,20 @@ public class JumpController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            Jump();
         }
+    }
+
+    void Jump()
+    {
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f); 
+        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
 
     void OnDrawGizmosSelected()
     {
         if (groundCheck == null) return;
-        Gizmos.color = Color.red;
+        Gizmos.color = isGrounded ? Color.green : Color.red;
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
     }
 }
