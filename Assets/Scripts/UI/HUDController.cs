@@ -18,7 +18,7 @@ public class HUDController : MonoBehaviour
     {
         // Startwaarden tot PlayerHealth/WeaponController gekoppeld zijn
         SetHealth(3, 3);
-        SetAmmo(14, 14);
+        
     }
 
     /// <summary>Aanroepen vanuit PlayerHealth (CLA-28).</summary>
