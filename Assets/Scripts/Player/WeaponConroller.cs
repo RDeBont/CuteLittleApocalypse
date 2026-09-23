@@ -195,15 +195,21 @@ public class WeaponController : MonoBehaviour
         }
     }
 
-    public void AddReserveAmmo(int amount)
+    public bool AddReserveAmmo(int amount)
     {
+        if (reserveAmmo >= maxReserveAmmo)
+            return false;
+
         reserveAmmo = Mathf.Clamp(
             reserveAmmo + amount,
             0,
             maxReserveAmmo
         );
 
+        Debug.Log("Reserve ammo: " + reserveAmmo);
+
         UpdateAmmoUI();
+        return true;
     }
 
     public int CurrentMagazine
