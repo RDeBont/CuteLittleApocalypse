@@ -14,8 +14,15 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private float reloadTime = 1.2f;
 
     [Header("Weapon")]
-    [SerializeField] private Transform muzzlePoint;
+    [Tooltip("Niet-flippend referentiepunt (bv. de player root) waar de offset vandaan gemeten wordt.")]
+    [SerializeField] private Transform muzzleAnchor;
+    [Tooltip("Offset t.o.v. muzzleAnchor als je naar RECHTS kijkt. X wordt automatisch omgedraaid als je naar links kijkt; Y blijft altijd gelijk.")]
+    [SerializeField] private Vector2 muzzleOffset = new Vector2(0.5f, 0f);
     [SerializeField] private Projectile projectilePrefab;
+
+    [Header("Aiming")]
+    [Tooltip("Transform waarvan localScale.x de kijkrichting bepaalt (positief = rechts, negatief = links). Leeg = deze transform.")]
+    [SerializeField] private Transform facingReference;
 
     [Header("UI")]
     [SerializeField] private TMP_Text ammoText;
@@ -23,18 +30,23 @@ public class WeaponController : MonoBehaviour
     private int currentMagazine;
     private int reserveAmmo;
     private bool isReloading;
-    private Camera mainCamera;
+    private bool facingRight = true;
 
     private void Awake()
     {
         currentMagazine = magazineSize;
         reserveAmmo = Mathf.Clamp(startReserveAmmo, 0, maxReserveAmmo);
-        mainCamera = Camera.main;
+
+        if (facingReference == null)
+            facingReference = transform;
+
         UpdateAmmoUI();
     }
 
     private void Update()
     {
+        UpdateFacing();
+
         if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
         {
             TryFire();
@@ -44,6 +56,13 @@ public class WeaponController : MonoBehaviour
         {
             TryReload();
         }
+    }
+
+    private void UpdateFacing()
+    {
+        float scaleX = facingReference.localScale.x;
+        if (Mathf.Abs(scaleX) > 0.0001f)
+            facingRight = scaleX > 0f;
     }
 
     private void TryFire()
@@ -62,32 +81,26 @@ public class WeaponController : MonoBehaviour
 
     private void Fire()
     {
-        if (projectilePrefab == null || muzzlePoint == null)
+        if (projectilePrefab == null || muzzleAnchor == null)
         {
-            Debug.LogWarning("WeaponController: projectilePrefab of muzzlePoint niet ingesteld.");
+            Debug.LogWarning("WeaponController: projectilePrefab of muzzleAnchor niet ingesteld.");
             return;
         }
 
         currentMagazine--;
         UpdateAmmoUI();
 
-        Vector2 origin = muzzlePoint.position;
-        Vector2 direction = GetAimDirection(origin);
+        Vector2 origin = GetMuzzleOrigin();
+        Vector2 direction = facingRight ? Vector2.right : Vector2.left;
 
         Projectile projectile = Instantiate(projectilePrefab, origin, Quaternion.identity);
         projectile.Launch(direction);
     }
 
-    private Vector2 GetAimDirection(Vector2 origin)
+    private Vector2 GetMuzzleOrigin()
     {
-        Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        Vector2 direction = (Vector2)mouseWorldPosition - origin;
-
-        // Muis precies op de loop: schiet naar rechts i.p.v. richting (0,0)
-        if (direction.sqrMagnitude < 0.0001f)
-            return Vector2.right;
-
-        return direction.normalized;
+        float xOffset = facingRight ? muzzleOffset.x : -muzzleOffset.x;
+        return (Vector2)muzzleAnchor.position + new Vector2(xOffset, muzzleOffset.y);
     }
 
     private void TryReload()

@@ -28,7 +28,7 @@ public class Projectile : MonoBehaviour
         rb.linearVelocity = direction * speed;
         transform.right = direction;
 
-        Debug.Log($"Launch: dir={direction} speed={speed} vel={rb.linearVelocity} bodyType={rb.bodyType}");
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
