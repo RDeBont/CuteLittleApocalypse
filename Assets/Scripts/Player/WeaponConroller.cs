@@ -27,6 +27,9 @@ public class WeaponController : MonoBehaviour
     [Header("UI")]
     [SerializeField] private TMP_Text ammoText;
 
+    [Header("Animatie")]
+    [SerializeField] private SpelerAnimatie spelerAnimatie;
+
     private int currentMagazine;
     private int reserveAmmo;
     private bool isReloading;
@@ -95,6 +98,10 @@ public class WeaponController : MonoBehaviour
 
         Projectile projectile = Instantiate(projectilePrefab, origin, Quaternion.identity);
         projectile.Launch(direction);
+        if (spelerAnimatie != null)
+        {
+            spelerAnimatie.SpeelSchietAnimatie();
+        }
     }
 
     private Vector2 GetMuzzleOrigin()

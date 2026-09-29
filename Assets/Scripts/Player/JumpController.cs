@@ -13,6 +13,8 @@ public class JumpController : MonoBehaviour
     private Rigidbody2D rb;
     private bool isGrounded;
 
+    public bool IsGrounded => isGrounded;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -43,4 +45,5 @@ public class JumpController : MonoBehaviour
         Gizmos.color = isGrounded ? Color.green : Color.red;
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
     }
+
 }
