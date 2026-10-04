@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyBase : MonoBehaviour
+public class EnemyBase : MonoBehaviour, IDamageable
 {
     [SerializeField] protected int maxHealth = 1;
 
@@ -11,10 +11,11 @@ public class EnemyBase : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public virtual void TakeDamage(int damage)
+    public virtual void TakeDamage(int amount)
     {
-        currentHealth -= damage;
-        Debug.Log(gameObject.name + " took damage: " + damage + " (health left: " + currentHealth + ")");
+        currentHealth -= amount;
+
+        Debug.Log(gameObject.name + " took " + amount + " damage. Health: " + currentHealth);
 
         if (currentHealth <= 0)
         {
@@ -24,6 +25,7 @@ public class EnemyBase : MonoBehaviour
 
     protected virtual void Die()
     {
+        Debug.Log(gameObject.name + " died!");
         Destroy(gameObject);
     }
 }
