@@ -16,7 +16,7 @@ public class PlayerHealth : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
-    public event Action<int, int> OnHealthChanged; // (current, max)
+    public event Action<int, int> OnHealthChanged; 
     public event Action OnDeath;
 
     public int CurrentHealth => currentHealth;
@@ -53,6 +53,12 @@ public class PlayerHealth : MonoBehaviour
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
     }
 
+    public void ResetHealth()
+    {
+        currentHealth = maxHealth;
+        OnHealthChanged?.Invoke(currentHealth, maxHealth);
+    }
+
     private IEnumerator InvincibilityRoutine()
     {
         isInvincible = true;
@@ -75,7 +81,7 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Player is dead");
     }
 
-    // Ponycontact = 1 schade
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Hazard"))
@@ -92,4 +98,3 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 }
-
