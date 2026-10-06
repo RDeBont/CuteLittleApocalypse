@@ -162,6 +162,15 @@ public class WeaponController : MonoBehaviour
         return true;
     }
 
+    public void RestoreAmmo(int magazine, int reserve)
+    {
+        StopAllCoroutines(); 
+        isReloading = false;
+        currentMagazine = Mathf.Clamp(magazine, 0, magazineSize);
+        reserveAmmo = Mathf.Clamp(reserve, 0, maxReserveAmmo);
+        UpdateAmmoUI();
+    }
+
     public int CurrentMagazine => currentMagazine;
     public int ReserveAmmo => reserveAmmo;
     public bool IsReloading => isReloading;
