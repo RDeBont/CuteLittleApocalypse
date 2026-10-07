@@ -4,9 +4,9 @@
 Een laatste overlevende soldaat vlucht over de daken van een ingenomen stad naar zijn evacuatiepunt.
 
 ## Team
-- Rowan de Bont — Art & Style
-- Tycho — 
-- Thomas — 
+- Rowan de Bont — Art, UI en documentatie
+- Tycho — Gameplay-programmeur
+- Thomas — Leveldesign, vijanden, audio en testen
 
 ## Setup
 1. Unity <versie> via Unity Hub installeren
