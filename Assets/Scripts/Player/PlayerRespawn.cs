@@ -1,27 +1,32 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerRespawn : MonoBehaviour
 {
+    [SerializeField] private float respawnDelay = 1f;
+
     private PlayerHealth health;
     private WeaponController weapon;
     private Rigidbody2D rb;
+    private SpriteRenderer sprite;
 
     private Vector3 checkpointPos;
     private int magazineSnapshot;
     private int reserveSnapshot;
 
     public Checkpoint ActiveCheckpoint { get; private set; }
+    public Vector3 RespawnPosition => checkpointPos;
 
     private void Awake()
     {
         health = GetComponent<PlayerHealth>();
         weapon = GetComponent<WeaponController>();
         rb = GetComponent<Rigidbody2D>();
+        sprite = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void Start()
     {
-        
         checkpointPos = transform.position;
         SnapshotAmmo();
     }
@@ -46,8 +51,26 @@ public class PlayerRespawn : MonoBehaviour
 
     private void HandleDeath()
     {
+        StartCoroutine(RespawnRoutine());
+    }
+
+    private IEnumerator RespawnRoutine()
+    {
+        if (sprite) sprite.enabled = false;
+        if (rb)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.simulated = false;
+        }
+
+        yield return new WaitForSeconds(respawnDelay);
+
         Respawn();
         health.ResetHealth();
+
+        if (rb) rb.simulated = true;
+        if (sprite) sprite.enabled = true;
+        health.StartInvincibility();
     }
 
     public void Respawn()

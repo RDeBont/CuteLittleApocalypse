@@ -95,8 +95,10 @@ public class EnemyPatrol : EnemyBase
         edgeCheck.localPosition = localPosition;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    protected override void OnTriggerEnter2D(Collider2D other)
     {
+        base.OnTriggerEnter2D(other);
+
         if (other.transform.root.CompareTag("Player"))
         {
             Debug.Log("Player hit by Pink Pony");

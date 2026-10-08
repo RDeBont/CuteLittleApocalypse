@@ -161,14 +161,19 @@ public class EnemyChase : EnemyBase
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    protected override void OnTriggerEnter2D(Collider2D other)
     {
-        CheckPlayerContact(other);
+        base.OnTriggerEnter2D(other); 
+
+        
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    protected override void OnCollisionEnter2D(Collision2D c)
     {
-        CheckPlayerContact(collision.collider);
+        base.OnCollisionEnter2D(c); // contactschade uit EnemyBase
+
+        // jouw bestaande code
     }
 
     private void CheckPlayerContact(Collider2D other)

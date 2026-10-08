@@ -20,13 +20,14 @@ public class HUDController : MonoBehaviour
 
     private int lastMagazine = -1;
     private int lastReserve = -1;
+    PlayerHealth health;
 
     private void Start()
     {
         if (playerHealth == null)
-            playerHealth = FindFirstObjectByType<PlayerHealth>();
+            playerHealth = FindAnyObjectByType<PlayerHealth>();
         if (weapon == null)
-            weapon = FindFirstObjectByType<WeaponController>();
+            weapon = FindAnyObjectByType<WeaponController>();
 
         if (playerHealth != null)
         {
