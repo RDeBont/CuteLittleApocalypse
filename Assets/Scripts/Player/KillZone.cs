@@ -9,9 +9,9 @@ public class KillZone : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("KillZone geraakt door: " + other.name);
+        
         var health = other.GetComponentInParent<PlayerHealth>();
-        if (health == null) { Debug.LogWarning("Geen PlayerHealth gevonden"); return; }
+        if (health == null) { ; return; }
 
         health.TakeDamage(damage);
 

@@ -173,9 +173,10 @@ public class EnemyChase : EnemyBase
 
     private void CheckPlayerContact(Collider2D other)
     {
-        if (other.transform.root.CompareTag("Player"))
-        {
-            Debug.Log("Player hit by Purple Pony");
-        }
+        var health = other.GetComponentInParent<PlayerHealth>();
+        if (health == null) return;
+
+        Debug.Log("Player hit by Purple Pony");
+        health.TakeDamage(1);
     }
 }

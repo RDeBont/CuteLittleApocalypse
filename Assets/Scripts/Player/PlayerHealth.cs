@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer))]
 public class PlayerHealth : MonoBehaviour
 {
     [Header("Health")]
@@ -12,11 +11,11 @@ public class PlayerHealth : MonoBehaviour
     [Header("Damage feedback")]
     [SerializeField] private float invincibilityDuration = 1f;
     [SerializeField] private float blinkInterval = 0.1f;
-    private bool isInvincible = false;
 
+    private bool isInvincible = false;
     private SpriteRenderer spriteRenderer;
 
-    public event Action<int, int> OnHealthChanged; 
+    public event Action<int, int> OnHealthChanged;
     public event Action OnDeath;
 
     public int CurrentHealth => currentHealth;
@@ -25,7 +24,7 @@ public class PlayerHealth : MonoBehaviour
     private void Awake()
     {
         currentHealth = maxHealth;
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     public void TakeDamage(int amount)
@@ -36,13 +35,9 @@ public class PlayerHealth : MonoBehaviour
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
 
         if (currentHealth <= 0)
-        {
             Die();
-        }
         else
-        {
-            StartCoroutine(InvincibilityRoutine());
-        }
+            StartInvincibility();
     }
 
     public void Heal(int amount)
@@ -55,8 +50,18 @@ public class PlayerHealth : MonoBehaviour
 
     public void ResetHealth()
     {
+        StopAllCoroutines();
+        isInvincible = false;
+        if (spriteRenderer != null) spriteRenderer.enabled = true;
+
         currentHealth = maxHealth;
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
+    }
+
+    public void StartInvincibility()
+    {
+        StopAllCoroutines();
+        StartCoroutine(InvincibilityRoutine());
     }
 
     private IEnumerator InvincibilityRoutine()
@@ -66,35 +71,33 @@ public class PlayerHealth : MonoBehaviour
 
         while (elapsed < invincibilityDuration)
         {
-            spriteRenderer.enabled = !spriteRenderer.enabled;
+            if (spriteRenderer != null)
+                spriteRenderer.enabled = !spriteRenderer.enabled;
             yield return new WaitForSeconds(blinkInterval);
             elapsed += blinkInterval;
         }
 
-        spriteRenderer.enabled = true;
+        if (spriteRenderer != null)
+            spriteRenderer.enabled = true;
         isInvincible = false;
     }
 
     private void Die()
     {
-        OnDeath?.Invoke();
         Debug.Log("Player is dead");
+        StopAllCoroutines();
+        OnDeath?.Invoke();
     }
 
-    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Hazard"))
-        {
             TakeDamage(1);
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Hazard"))
-        {
             TakeDamage(1);
-        }
     }
 }
