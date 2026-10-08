@@ -15,7 +15,7 @@ public class Checkpoint : MonoBehaviour
         var respawn = other.GetComponentInParent<PlayerRespawn>();
         if (respawn == null)
         {
-            Debug.LogWarning("Geen PlayerRespawn op: " + other.name, other);
+            
             return;
         }
 
