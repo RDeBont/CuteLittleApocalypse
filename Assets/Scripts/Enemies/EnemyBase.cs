@@ -6,6 +6,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
     [SerializeField] protected int contactDamage = 1;
 
     protected int currentHealth;
+    private bool isDead;
 
     protected virtual void Start()
     {
@@ -23,6 +24,12 @@ public class EnemyBase : MonoBehaviour, IDamageable
 
     protected virtual void Die()
     {
+        // Twee kogels in hetzelfde frame mogen niet dubbel tellen
+        if (isDead) return;
+        isDead = true;
+
+        if (LevelManager.Instance != null) LevelManager.Instance.RegisterPonyKilled();
+
         Debug.Log(gameObject.name + " died!");
         Destroy(gameObject);
     }

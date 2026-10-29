@@ -13,6 +13,7 @@ public class PlayerRespawn : MonoBehaviour
     private Vector3 checkpointPos;
     private int magazineSnapshot;
     private int reserveSnapshot;
+    private int healthSnapshot;
 
     public Checkpoint ActiveCheckpoint { get; private set; }
     public Vector3 RespawnPosition => checkpointPos;
@@ -29,6 +30,14 @@ public class PlayerRespawn : MonoBehaviour
     {
         checkpointPos = transform.position;
         SnapshotAmmo();
+        SnapshotHealth();
+
+        if (LevelManager.Instance != null) LevelManager.Instance.OnRetry += HandleRetry;
+    }
+
+    private void OnDestroy()
+    {
+        if (LevelManager.Instance != null) LevelManager.Instance.OnRetry -= HandleRetry;
     }
 
     private void OnEnable() { if (health) health.OnDeath += HandleDeath; }
@@ -40,6 +49,9 @@ public class PlayerRespawn : MonoBehaviour
         ActiveCheckpoint = cp;
         checkpointPos = cp.SpawnPosition;
         SnapshotAmmo();
+        SnapshotHealth();
+
+        if (LevelManager.Instance != null) LevelManager.Instance.SetCheckpoint();
     }
 
     private void SnapshotAmmo()
@@ -47,6 +59,11 @@ public class PlayerRespawn : MonoBehaviour
         if (!weapon) return;
         magazineSnapshot = weapon.CurrentMagazine;
         reserveSnapshot = weapon.ReserveAmmo;
+    }
+
+    private void SnapshotHealth()
+    {
+        if (health) healthSnapshot = health.CurrentHealth;
     }
 
     private void HandleDeath()
@@ -57,6 +74,7 @@ public class PlayerRespawn : MonoBehaviour
     private IEnumerator RespawnRoutine()
     {
         if (sprite) sprite.enabled = false;
+        if (weapon) weapon.enabled = false;   // niet schieten terwijl je dood bent of op een knop klikt
         if (rb)
         {
             rb.linearVelocity = Vector2.zero;
@@ -65,12 +83,39 @@ public class PlayerRespawn : MonoBehaviour
 
         yield return new WaitForSeconds(respawnDelay);
 
+        // Met LevelManager: game over-scherm tonen, respawnen pas na "Opnieuw proberen" (HandleRetry)
+        if (LevelManager.Instance != null)
+        {
+            int ammoLeft = weapon ? weapon.CurrentMagazine + weapon.ReserveAmmo : 0;
+            LevelManager.Instance.GameOver(ammoLeft);
+            yield break;
+        }
+
+        ReviveAtCheckpoint();
+    }
+
+    private void HandleRetry()
+    {
+        StopAllCoroutines();
+        ReviveAtCheckpoint();
+    }
+
+    private void ReviveAtCheckpoint()
+    {
         Respawn();
-        health.ResetHealth();
+        health.RestoreHealth(healthSnapshot);
 
         if (rb) rb.simulated = true;
         if (sprite) sprite.enabled = true;
         health.StartInvincibility();
+        StartCoroutine(EnableWeaponNextFrame());
+    }
+
+    // Een frame later, anders telt de klik op "Opnieuw proberen" ook als schot
+    private IEnumerator EnableWeaponNextFrame()
+    {
+        yield return null;
+        if (weapon) weapon.enabled = true;
     }
 
     public void Respawn()

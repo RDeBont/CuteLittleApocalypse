@@ -48,13 +48,16 @@ public class PlayerHealth : MonoBehaviour
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
     }
 
-    public void ResetHealth()
+    public void ResetHealth() => RestoreHealth(maxHealth);
+
+    // Opnieuw proberen: HP terugzetten naar de stand bij het checkpoint
+    public void RestoreHealth(int amount)
     {
         StopAllCoroutines();
         isInvincible = false;
         if (spriteRenderer != null) spriteRenderer.enabled = true;
 
-        currentHealth = maxHealth;
+        currentHealth = Mathf.Clamp(amount, 1, maxHealth);
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
     }
 
