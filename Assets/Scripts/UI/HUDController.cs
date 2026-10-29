@@ -18,12 +18,31 @@ public class HUDController : MonoBehaviour
     [SerializeField] private Color ammoColor = new Color32(0xF2, 0xB1, 0x38, 0xFF);      // #F2B138
     [SerializeField] private Color ammoEmptyColor = new Color32(0xC9, 0x3B, 0x3B, 0xFF); // #C93B3B
 
+    [Header("Ammo in pixelfont (optioneel)")]
+    [Tooltip("apocalypse_font_8x8_solid of _outline (PNG). Leeg = gewoon de TextMeshPro-tekst.")]
+    [SerializeField] private Texture2D ammoFont;
+    [Tooltip("Het font heeft geen /, daarom een ander scheidingsteken.")]
+    [SerializeField] private string ammoSeparator = " : ";
+    [Tooltip("1 = even groot als de rest van de pixel-UI, 0.67 = iets kleiner")]
+    [SerializeField, Range(0.3f, 1.5f)] private float ammoTextSize = 0.67f;
+
+    private PixelText ammoPixelText;
+
     private int lastMagazine = -1;
     private int lastReserve = -1;
+    private bool lastReloading;
     PlayerHealth health;
 
     private void Start()
     {
+        // Pixelfont over de bestaande tekst leggen; de TextMeshPro-tekst zelf gaat onzichtbaar
+        if (ammoFont != null && ammoText != null)
+        {
+            ammoPixelText = PixelText.Attach(ammoText.rectTransform, ammoFont, PixelText.Align.Left, Color.white);
+            ammoPixelText.SizeMultiplier = ammoTextSize;
+            ammoText.enabled = false;
+        }
+
         if (playerHealth == null)
             playerHealth = FindAnyObjectByType<PlayerHealth>();
         if (weapon == null)
@@ -51,10 +70,11 @@ public class HUDController : MonoBehaviour
         // Ammo automatisch bijwerken zonder WeaponController aan te passen
         if (weapon == null) return;
 
-        if (weapon.CurrentMagazine != lastMagazine || weapon.ReserveAmmo != lastReserve)
+        if (weapon.CurrentMagazine != lastMagazine || weapon.ReserveAmmo != lastReserve || weapon.IsReloading != lastReloading)
         {
             lastMagazine = weapon.CurrentMagazine;
             lastReserve = weapon.ReserveAmmo;
+            lastReloading = weapon.IsReloading;
             SetAmmo(lastMagazine, lastReserve);
         }
     }
@@ -78,5 +98,13 @@ public class HUDController : MonoBehaviour
         current = Mathf.Max(0, current);
         ammoText.text = $"{current:D2} / {max:D2}";
         ammoText.color = current == 0 ? ammoEmptyColor : ammoColor;
+
+        if (ammoPixelText != null)
+        {
+            // Font is al oranje, dus alleen leeg magazijn rood kleuren
+            bool reloading = weapon != null && weapon.IsReloading;
+            ammoPixelText.Text = reloading ? "HERLADEN..." : $"{current:D2}{ammoSeparator}{max:D2}";
+            ammoPixelText.Color = current == 0 && !reloading ? ammoEmptyColor : Color.white;
+        }
     }
 }

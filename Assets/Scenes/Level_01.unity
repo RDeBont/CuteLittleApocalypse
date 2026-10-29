@@ -4923,8 +4923,47 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 6931402773928528846, guid: b275c74770551854ea84aa87fb003e05, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3164985047111260874, guid: b275c74770551854ea84aa87fb003e05, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4111508012889132617}
   m_SourcePrefab: {fileID: 100100000, guid: b275c74770551854ea84aa87fb003e05, type: 3}
+--- !u!1 &4111508012889132616 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3164985047111260874, guid: b275c74770551854ea84aa87fb003e05, type: 3}
+  m_PrefabInstance: {fileID: 4111508012889132615}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4111508012889132617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4111508012889132616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0d20543fc6bccd428722fa4fe08880a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IntroScreen
+  font: {fileID: 2800000, guid: 535222a1f095c534283e68780bfd4c52, type: 3}
+  story: 'De stad is gevallen.
+
+    Jouw squad ook.
+
+
+    Alleen jij leeft nog, met informatie die het leger nodig heeft.
+
+
+    De Chinook wacht op het laatste dak.
+
+    De ponies zoeken je al.
+
+
+    Haal het einde. Zuinig met je kogels.'
+  hint: DRUK OP EEN TOETS
+  textColor: {r: 1, g: 1, b: 1, a: 1}
+  hintColor: {r: 1, g: 1, b: 1, a: 0.7}
+  minShowTime: 0.5
 --- !u!1001 &8089134908132276643
 PrefabInstance:
   m_ObjectHideFlags: 0

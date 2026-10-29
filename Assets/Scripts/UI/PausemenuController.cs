@@ -42,9 +42,10 @@ public class PauseMenuController : MonoBehaviour
             Pause();
     }
 
-    // Niet pauzeren tijdens game over of het eindscherm (LevelManager zet daar timeScale 0).
+    // Niet pauzeren tijdens het begintekstscherm, game over of het eindscherm (daar staat timeScale al op 0).
     private bool CanPause()
     {
+        if (IntroScreen.IsShowing) return false;
         return LevelManager.Instance == null || LevelManager.Instance.State == LevelState.Playing;
     }
 

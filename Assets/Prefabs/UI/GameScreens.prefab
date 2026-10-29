@@ -333,13 +333,8 @@ MonoBehaviour:
   levelCompletePanel: {fileID: 6630072537555313625}
   gameOverPanel: {fileID: 9220476493530684591}
   mainMenuScene: MainMenu
-  timeText: {fileID: 2023568513267681903}
-  bestTimeText: {fileID: 0}
-  killsText: {fileID: 6493098405069016232}
-  ammoText: {fileID: 2963230919656665262}
-  fontSize: 8
+  font: {fileID: 2800000, guid: 535222a1f095c534283e68780bfd4c52, type: 3}
   valueColor: {r: 0.78, g: 0.8, b: 0.88, a: 1}
-  highlightColor: {r: 1, g: 0.67, b: 0.2, a: 1}
 --- !u!1 &4327629183942773888
 GameObject:
   m_ObjectHideFlags: 0

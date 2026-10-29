@@ -88,7 +88,6 @@ GameObject:
   - component: {fileID: 6435220037807647360}
   - component: {fileID: 4757041140730141916}
   - component: {fileID: 410801707381103589}
-  - component: {fileID: 1210320092395290639}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -193,6 +192,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3593d08781c05fa4c8989a863535b95c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HUDController
+  playerHealth: {fileID: 0}
+  weapon: {fileID: 0}
   healthBarImage: {fileID: 1261025850736278180}
   healthFrames:
   - {fileID: 1333296807, guid: 131c0587d2e8f9f4bb703a07e6c95bd5, type: 3}
@@ -202,20 +203,8 @@ MonoBehaviour:
   ammoText: {fileID: 7069379029708730219}
   ammoColor: {r: 0.9490196, g: 0.69411767, b: 0.21960784, a: 1}
   ammoEmptyColor: {r: 0.7882353, g: 0.23137255, b: 0.23137255, a: 1}
---- !u!114 &1210320092395290639
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6221538874722267195}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7278c0f4db39534fb4184d795461a67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HUDDebugTester
-  maxHealth: 3
-  maxAmmo: 14
+  ammoFont: {fileID: 2800000, guid: 535222a1f095c534283e68780bfd4c52, type: 3}
+  ammoSeparator: ' : '
 --- !u!1 &8609039008077550975
 GameObject:
   m_ObjectHideFlags: 0

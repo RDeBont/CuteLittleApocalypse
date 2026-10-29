@@ -1,4 +1,4 @@
-using TMPro;
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -23,15 +23,14 @@ public class GameScreensController : MonoBehaviour
     [Header("Scenes")]
     [SerializeField] private string mainMenuScene = "MainMenu";
 
-    [Header("Eindscherm teksten (leeg = automatisch aanmaken)")]
-    [SerializeField] private TMP_Text timeText;
-    [SerializeField] private TMP_Text killsText;
-    [SerializeField] private TMP_Text ammoText;
+    [Header("Eindscherm scores")]
+    [Tooltip("apocalypse_font_8x8_solid of _outline (PNG)")]
+    [SerializeField] private Texture2D font;
+    [SerializeField] private Color valueColor = Color.white;
 
-    [Header("Opmaak automatische teksten")]
-    [SerializeField] private float fontSize = 8f;
-    [SerializeField] private Color valueColor = new Color(0.78f, 0.80f, 0.88f);
-    [SerializeField] private Color highlightColor = new Color(1f, 0.67f, 0.2f);
+    private PixelText timeText;
+    private PixelText ammoText;
+    private PixelText killsText;
 
     private LevelManager level;
 
@@ -92,9 +91,16 @@ public class GameScreensController : MonoBehaviour
     {
         if (levelCompletePanel != null) levelCompletePanel.SetActive(true);
 
-        if (timeText != null) timeText.text = stats.FormattedTime();
-        if (ammoText != null) ammoText.text = stats.AmmoLeft.ToString();
-        if (killsText != null) killsText.text = stats.PoniesKilled.ToString();
+        if (timeText != null) timeText.Text = FormatMinutesSeconds(stats.TimeSeconds);
+        if (ammoText != null) ammoText.Text = stats.AmmoLeft.ToString();
+        if (killsText != null) killsText.Text = stats.PoniesKilled.ToString();
+    }
+
+    // Kort (02:41) zodat het naast de labels past, net als in het ontwerp
+    private static string FormatMinutesSeconds(float seconds)
+    {
+        TimeSpan t = TimeSpan.FromSeconds(seconds);
+        return $"{(int)t.TotalMinutes:00}:{t.Seconds:00}";
     }
 
     private void ShowGameOver(LevelStats stats)
@@ -145,10 +151,15 @@ public class GameScreensController : MonoBehaviour
         CreateClickArea(panel, "VolgendeKnop", new Rect(124, 116, 72, 15), NextLevel);
         CreateClickArea(panel, "MenuKnop", new Rect(124, 134, 72, 15), QuitToMainMenu);
 
-        // Waardes rechts naast de labels TIJD / MUNITIE / VIJANDEN
-        if (timeText == null) timeText = CreateText(panel, "TimeText", new Rect(150, 76, 58, 10), valueColor, TextAlignmentOptions.Right);
-        if (ammoText == null) ammoText = CreateText(panel, "AmmoText", new Rect(150, 86, 58, 10), valueColor, TextAlignmentOptions.Right);
-        if (killsText == null) killsText = CreateText(panel, "KillsText", new Rect(150, 96, 58, 10), highlightColor, TextAlignmentOptions.Right);
+        // Oude TextMeshPro-teksten in dit paneel uitzetten, de waardes komen nu in het pixelfont
+        foreach (TMPro.TMP_Text oldText in levelCompletePanel.GetComponentsInChildren<TMPro.TMP_Text>(true))
+            oldText.gameObject.SetActive(false);
+
+        // Waardes rechts naast de labels TIJD / MUNITIE / VIJANDEN (labels staan op y 80, 90 en 100)
+        if (font == null) Debug.LogWarning("GameScreensController: geen font gekoppeld, scores blijven leeg");
+        timeText = PixelText.Create(panel, "TimeText", new Rect(154, 79, 60, 8), font, PixelText.Align.Right, valueColor);
+        ammoText = PixelText.Create(panel, "AmmoText", new Rect(154, 89, 60, 8), font, PixelText.Align.Right, valueColor);
+        killsText = PixelText.Create(panel, "KillsText", new Rect(154, 99, 60, 8), font, PixelText.Align.Right, valueColor);
     }
 
     private void BuildGameOverScreen()
@@ -171,21 +182,6 @@ public class GameScreensController : MonoBehaviour
         Button button = rect.gameObject.AddComponent<Button>();
         button.transition = Selectable.Transition.None;
         button.onClick.AddListener(onClick);
-    }
-
-    private TMP_Text CreateText(Transform parent, string name, Rect pixels, Color color, TextAlignmentOptions alignment)
-    {
-        RectTransform rect = CreateRect(parent, name, pixels);
-
-        TextMeshProUGUI text = rect.gameObject.AddComponent<TextMeshProUGUI>();
-        text.fontSize = fontSize;
-        text.color = color;
-        text.alignment = alignment;
-        text.textWrappingMode = TextWrappingModes.NoWrap;
-        text.overflowMode = TextOverflowModes.Overflow;
-        text.raycastTarget = false;
-        text.text = string.Empty;
-        return text;
     }
 
     // Zet een RectTransform op een vaste plek in de 320x180-afbeelding, schaalt mee met het paneel.
