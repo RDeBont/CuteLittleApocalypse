@@ -62,6 +62,21 @@ public class LevelEndTrigger : MonoBehaviour
 
         yield return new WaitForSeconds(completeDelay);
         onLevelComplete.Invoke();
+
+        if (LevelManager.Instance != null)
+        {
+            LevelManager.Instance.CompleteLevel(GetAmmoLeft(player.gameObject));
+        }
+        else
+        {
+            Debug.LogWarning("LevelEndTrigger: geen LevelManager in de scene");
+        }
+    }
+
+    private static int GetAmmoLeft(GameObject player)
+    {
+        WeaponController weapon = player.GetComponentInChildren<WeaponController>(true);
+        return weapon != null ? weapon.CurrentMagazine + weapon.ReserveAmmo : 0;
     }
 
     private void FreezePlayer(Rigidbody2D player)

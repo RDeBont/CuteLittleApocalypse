@@ -1,7 +1,5 @@
-using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 /// <summary>Zet op een leeg GameObject in de scene MainMenu.</summary>
 public class MainMenuController : MonoBehaviour
@@ -9,14 +7,11 @@ public class MainMenuController : MonoBehaviour
     [Header("Scenes")]
     [SerializeField] private string levelScene = "Level_01";
 
-    [Header("Opslag")]
-    [Tooltip("Bestandsnaam van het JSON-savebestand. Zelfde naam als in SaveManager.")]
-    [SerializeField] private string saveFileName = "save.json";
-
     [Header("UI")]
-    [SerializeField] private Button continueButton;
     [SerializeField] private GameObject mainPanel;
     [SerializeField] private GameObject settingsPanel;
+    [Tooltip("Achtergrond voor het instellingenpaneel als Settings Panel leeg is (ui_options).")]
+    [SerializeField] private Sprite optionsBackground;
 
     private void Awake()
     {
@@ -26,9 +21,6 @@ public class MainMenuController : MonoBehaviour
 
     private void Start()
     {
-        if (continueButton != null)
-            continueButton.interactable = File.Exists(Path.Combine(Application.persistentDataPath, saveFileName));
-
         ShowMain();
     }
 
@@ -41,12 +33,12 @@ public class MainMenuController : MonoBehaviour
     // Knop: Nieuw spel
     public void NewGame() => LoadLevel();
 
-    // Knop: Verder spelen (SaveManager laadt de voortgang in het level)
-    public void ContinueGame() => LoadLevel();
-
     // Knop: Instellingen
     public void ShowSettings()
     {
+        // Geen paneel gekoppeld in de Inspector: dan bouwt SettingsMenu er zelf een.
+        if (settingsPanel == null) settingsPanel = SettingsMenu.Create(GetCanvas(), optionsBackground, ShowMain);
+
         if (mainPanel != null) mainPanel.SetActive(false);
         if (settingsPanel != null) settingsPanel.SetActive(true);
     }
@@ -66,6 +58,12 @@ public class MainMenuController : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+
+    private Transform GetCanvas()
+    {
+        Canvas canvas = mainPanel != null ? mainPanel.GetComponentInParent<Canvas>() : FindFirstObjectByType<Canvas>();
+        return canvas != null ? canvas.transform : transform;
     }
 
     private void LoadLevel()
