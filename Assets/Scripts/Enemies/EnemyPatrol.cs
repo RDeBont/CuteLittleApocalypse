@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class EnemyPatrol : EnemyBase
@@ -16,6 +17,7 @@ public class EnemyPatrol : EnemyBase
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private Collider2D enemyCollider;
+    private Animator animator;
 
     private float direction = 1f;
 
@@ -26,12 +28,14 @@ public class EnemyPatrol : EnemyBase
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         enemyCollider = GetComponent<Collider2D>();
+        animator = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
     {
         if (rb == null || edgeCheck == null || enemyCollider == null)
         {
+            SetMoving(false);
             return;
         }
 
@@ -79,6 +83,8 @@ public class EnemyPatrol : EnemyBase
             direction * moveSpeed,
             rb.linearVelocity.y
         );
+
+        SetMoving(true);
     }
 
     private void TurnAround()
@@ -95,13 +101,41 @@ public class EnemyPatrol : EnemyBase
         edgeCheck.localPosition = localPosition;
     }
 
+    private void SetMoving(bool moving)
+    {
+        if (animator != null)
+        {
+            animator.SetBool("isMoving", moving);
+        }
+    }
+
+    private void PlayAttack()
+    {
+        if (animator != null)
+        {
+            animator.SetTrigger("Attack");
+        }
+    }
+
     protected override void OnTriggerEnter2D(Collider2D other)
     {
         base.OnTriggerEnter2D(other);
 
-        if (other.transform.root.CompareTag("Player"))
+        if (other.GetComponentInParent<PlayerHealth>() != null)
         {
             Debug.Log("Player hit by Pink Pony");
+            PlayAttack();
+        }
+    }
+
+    protected override void OnCollisionEnter2D(Collision2D c)
+    {
+        base.OnCollisionEnter2D(c);
+
+        if (c.collider.GetComponentInParent<PlayerHealth>() != null)
+        {
+            Debug.Log("Player hit by Pink Pony");
+            PlayAttack();
         }
     }
 }

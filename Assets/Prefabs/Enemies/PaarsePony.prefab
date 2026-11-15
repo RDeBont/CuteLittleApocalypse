@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 496174508811830607}
   - component: {fileID: 410302230545325897}
   - component: {fileID: 9108219003313305939}
+  - component: {fileID: 633270751103508987}
   m_Layer: 7
   m_Name: PaarsePony
   m_TagString: Untagged
@@ -169,7 +170,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.9, y: 1.8}
+  m_Size: {x: 2, y: 1.65}
   m_EdgeRadius: 0
 --- !u!114 &9108219003313305939
 MonoBehaviour:
@@ -184,6 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyChase
   maxHealth: 2
+  contactDamage: 1
   detectionRange: 6
   moveSpeed: 3.5
   detectionIndicator: {fileID: 9069455616269209058}
@@ -193,6 +195,28 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   groundCheckDistance: 0.8
+--- !u!95 &633270751103508987
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431023443442719932}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2a2a12599ffb13343a0adffc9c5ed3a6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2069255003355591358
 GameObject:
   m_ObjectHideFlags: 0

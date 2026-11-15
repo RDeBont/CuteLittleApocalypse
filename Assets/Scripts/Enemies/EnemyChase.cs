@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class EnemyChase : EnemyBase
@@ -18,6 +19,7 @@ public class EnemyChase : EnemyBase
     private Transform player;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
+    private Animator animator;
 
     private float direction = 1f;
 
@@ -31,6 +33,7 @@ public class EnemyChase : EnemyBase
 
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        animator = GetComponent<Animator>();
 
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
 
@@ -148,6 +151,11 @@ public class EnemyChase : EnemyBase
             direction * moveSpeed,
             rb.linearVelocity.y
         );
+
+        if (animator != null)
+        {
+            animator.SetBool("isMoving", true);
+        }
     }
 
     private void StopMoving()
@@ -159,29 +167,36 @@ public class EnemyChase : EnemyBase
                 rb.linearVelocity.y
             );
         }
+
+        if (animator != null)
+        {
+            animator.SetBool("isMoving", false);
+        }
     }
 
     protected override void OnTriggerEnter2D(Collider2D other)
     {
-        base.OnTriggerEnter2D(other); 
+        base.OnTriggerEnter2D(other);
 
-        
+        if (other.GetComponentInParent<PlayerHealth>() != null)
+        {
+            if (animator != null)
+            {
+                animator.SetTrigger("Attack");
+            }
+        }
     }
-
 
     protected override void OnCollisionEnter2D(Collision2D c)
     {
-        base.OnCollisionEnter2D(c); // contactschade uit EnemyBase
+        base.OnCollisionEnter2D(c);
 
-        // jouw bestaande code
-    }
-
-    private void CheckPlayerContact(Collider2D other)
-    {
-        var health = other.GetComponentInParent<PlayerHealth>();
-        if (health == null) return;
-
-        Debug.Log("Player hit by Purple Pony");
-        health.TakeDamage(1);
+        if (c.collider.GetComponentInParent<PlayerHealth>() != null)
+        {
+            if (animator != null)
+            {
+                animator.SetTrigger("Attack");
+            }
+        }
     }
 }
