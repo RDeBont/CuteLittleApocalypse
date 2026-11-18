@@ -224,9 +224,19 @@ public class PixelText : MonoBehaviour
         return sprites[c - FirstChar];
     }
 
+    // Zonder domain reload blijft de cache bestaan tussen Play-sessies, terwijl de letters
+    // zelf al opgeruimd zijn. Daarom bij elke start van Play leegmaken.
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetCache()
+    {
+        glyphCache.Clear();
+    }
+
     private static Sprite[] GetGlyphs(Texture2D font)
     {
-        if (glyphCache.TryGetValue(font, out Sprite[] cached) && cached != null) return cached;
+        // 'A' als controle: is die opgeruimd (bv. door het laden van een scene), dan opnieuw maken
+        if (glyphCache.TryGetValue(font, out Sprite[] cached) && cached != null && cached['A' - FirstChar] != null)
+            return cached;
 
         int cell = font.width / Columns;
         Sprite[] sprites = new Sprite[LastChar - FirstChar + 1];
