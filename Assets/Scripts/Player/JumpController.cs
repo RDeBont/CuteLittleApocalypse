@@ -2,48 +2,167 @@ using UnityEngine;
 
 public class JumpController : MonoBehaviour
 {
-    [Header("Jump")]
-    public float jumpForce = 12f;
+    [Header("Sprong")]
+    [Tooltip("Hoogte (units) als je de springknop ingedrukt houdt. 1 tegel = 1 unit.")]
+    [SerializeField] private float jumpHeight = 2.6f;
+    [Tooltip("Tijd (s) tot het hoogste punt. Korter = strakker, langer = zweveriger.")]
+    [SerializeField] private float timeToApex = 0.4f;
+    [Tooltip("Loslaten tijdens het stijgen: snelheid omhoog x deze waarde. 0.5 = korte tik geeft ongeveer een kwart van de hoogte.")]
+    [SerializeField, Range(0f, 1f)] private float jumpCutMultiplier = 0.5f;
+
+    [Header("Vallen")]
+    [Tooltip("Zwaartekracht bij vallen = zwaartekracht bij stijgen x deze waarde. Boven 1.5 wordt het gat van 4 tegels in Level_01 (x 148-151) krap.")]
+    [SerializeField] private float fallMultiplier = 1.5f;
+    [Tooltip("Maximale valsnelheid (units/s).")]
+    [SerializeField] private float maxFallSpeed = 18f;
+
+    [Header("Vergevingsgezind")]
+    [Tooltip("Hoe lang (s) je na het verlaten van een rand nog mag springen.")]
+    [SerializeField] private float coyoteTime = 0.1f;
+    [Tooltip("Hoe lang (s) een te vroege druk op springen onthouden wordt tot je landt.")]
+    [SerializeField] private float jumpBufferTime = 0.1f;
 
     [Header("Ground Detection")]
-    public Transform groundCheck;
-    public float groundCheckRadius = 0.2f;
-    public LayerMask groundLayer;
+    [Tooltip("Collider van het lijf. Leeg = de eerste BoxCollider2D in de children.")]
+    [SerializeField] private BoxCollider2D bodyCollider;
+    [Tooltip("Alleen gebruikt als er geen bodyCollider is: midden van de voeten.")]
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private LayerMask groundLayer;
+    [Tooltip("Breedte van de check t.o.v. het lijf. Kleiner dan 1, zodat muren naast je niet als grond tellen.")]
+    [SerializeField, Range(0.3f, 1f)] private float groundCheckWidth = 0.9f;
+    [Tooltip("Hoe ver (units) onder de voeten gezocht wordt.")]
+    [SerializeField] private float groundCheckDepth = 0.06f;
+
+    [Header("Input")]
+    [SerializeField] private KeyCode jumpKey = KeyCode.Space;
 
     private Rigidbody2D rb;
     private bool isGrounded;
+    private bool isJumping;
+    private bool jumpHeld;
+    private bool jumpReleased;
+    private float lastJumpPressedTime = float.NegativeInfinity;
+    private float lastGroundedTime = float.NegativeInfinity;
+
+    private float riseGravityScale;
+    private float jumpVelocity;
 
     public bool IsGrounded => isGrounded;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        rb.interpolation = RigidbodyInterpolation2D.Interpolate;   // geen gehapper met de camera
 
-        if (groundCheck == null)
-            Debug.LogError("groundCheck is niet toegewezen in de Inspector!");
+        if (bodyCollider == null) bodyCollider = GetComponentInChildren<BoxCollider2D>();
+        if (bodyCollider == null && groundCheck == null)
+            Debug.LogError("JumpController: geen bodyCollider en geen groundCheck gevonden!");
+
+        CalculateJump();
+    }
+
+    void OnValidate()
+    {
+        timeToApex = Mathf.Max(0.05f, timeToApex);
+        jumpHeight = Mathf.Max(0.1f, jumpHeight);
+        fallMultiplier = Mathf.Max(1f, fallMultiplier);
+        if (rb != null) CalculateJump();
+    }
+
+    void OnDisable()
+    {
+        // Bv. bij het einde van het level: geen extra zware val achterlaten
+        if (rb != null) rb.gravityScale = riseGravityScale;
+    }
+
+    // Zwaartekracht en springsnelheid uit hoogte en tijd: g = 2h / t², v = g * t
+    private void CalculateJump()
+    {
+        float gravity = 2f * jumpHeight / (timeToApex * timeToApex);
+        jumpVelocity = gravity * timeToApex;
+
+        float worldGravity = Mathf.Abs(Physics2D.gravity.y);
+        riseGravityScale = worldGravity > 0f ? gravity / worldGravity : 1f;
     }
 
     void Update()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {
-            Jump();
-        }
+        // Input in Update (anders mis je drukken), natuurkunde in FixedUpdate
+        if (Input.GetKeyDown(jumpKey)) lastJumpPressedTime = Time.time;
+        if (Input.GetKeyUp(jumpKey)) jumpReleased = true;
+        jumpHeld = Input.GetKey(jumpKey);
     }
 
-    void Jump()
+    void FixedUpdate()
     {
-        rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f); 
-        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        float now = Time.time;
+        Vector2 velocity = rb.linearVelocity;
+
+        // Alleen op de grond als je niet meer omhoog gaat: voorkomt dubbel springen vlak na het afzetten
+        isGrounded = velocity.y <= 0.01f && CheckGround();
+        if (isGrounded)
+        {
+            lastGroundedTime = now;
+            isJumping = false;
+        }
+
+        bool buffered = now - lastJumpPressedTime <= jumpBufferTime;
+        bool coyote = now - lastGroundedTime <= coyoteTime;
+
+        if (buffered && coyote && !isJumping)
+        {
+            velocity.y = jumpVelocity;
+            isJumping = true;
+            isGrounded = false;
+            lastJumpPressedTime = float.NegativeInfinity;
+            lastGroundedTime = float.NegativeInfinity;
+
+            // Al losgelaten (korte tik of gebufferd)? Dan meteen een lage sprong
+            if (!jumpHeld) jumpReleased = true;
+        }
+
+        // Jump cut: knop los tijdens het stijgen = lagere sprong
+        if (jumpReleased)
+        {
+            if (isJumping && velocity.y > 0f) velocity.y *= jumpCutMultiplier;
+            jumpReleased = false;
+        }
+
+        // Sneller vallen dan stijgen, met een maximum
+        rb.gravityScale = velocity.y < 0f ? riseGravityScale * fallMultiplier : riseGravityScale;
+        if (velocity.y < -maxFallSpeed) velocity.y = -maxFallSpeed;
+
+        rb.linearVelocity = velocity;
+    }
+
+    private bool CheckGround()
+    {
+        GetGroundBox(out Vector2 center, out Vector2 size);
+        return Physics2D.OverlapBox(center, size, 0f, groundLayer) != null;
+    }
+
+    // Dunne strook net onder de voeten, iets smaller dan het lijf
+    private void GetGroundBox(out Vector2 center, out Vector2 size)
+    {
+        if (bodyCollider != null)
+        {
+            Bounds b = bodyCollider.bounds;
+            size = new Vector2(b.size.x * groundCheckWidth, groundCheckDepth);
+            center = new Vector2(b.center.x, b.min.y - groundCheckDepth * 0.5f);
+        }
+        else
+        {
+            Vector2 feet = groundCheck != null ? (Vector2)groundCheck.position : (Vector2)transform.position;
+            size = new Vector2(0.7f * groundCheckWidth, groundCheckDepth);
+            center = feet + Vector2.down * (groundCheckDepth * 0.5f);
+        }
     }
 
     void OnDrawGizmosSelected()
     {
-        if (groundCheck == null) return;
+        if (bodyCollider == null) bodyCollider = GetComponentInChildren<BoxCollider2D>();
+        GetGroundBox(out Vector2 center, out Vector2 size);
         Gizmos.color = isGrounded ? Color.green : Color.red;
-        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+        Gizmos.DrawWireCube(center, size);
     }
-
 }
