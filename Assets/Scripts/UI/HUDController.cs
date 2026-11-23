@@ -15,7 +15,9 @@ public class HUDController : MonoBehaviour
     [SerializeField] private Sprite[] healthFrames = new Sprite[4];
 
     [Header("Ammo")]
+    [Tooltip("Oude cijferweergave. Staat uit zolang er een AmmoBulletDisplay op de HUD staat, tenzij Show Old Ammo Text aan staat.")]
     [SerializeField] private TMP_Text ammoText;
+    [SerializeField] private bool showOldAmmoText = false;
     [SerializeField] private Color ammoColor = new Color32(0xF2, 0xB1, 0x38, 0xFF);      // #F2B138
     [SerializeField] private Color ammoEmptyColor = new Color32(0xC9, 0x3B, 0x3B, 0xFF); // #C93B3B
 
@@ -41,15 +43,18 @@ public class HUDController : MonoBehaviour
     private PixelText popupPixelText;
     private Coroutine popupRoutine;
 
-    private int lastMagazine = -1;
-    private int lastReserve = -1;
-    private bool lastReloading;
+    private bool useOldAmmoText = true;
     PlayerHealth health;
 
     private void Start()
     {
+        // Nieuwe kogelrij aanwezig? Dan de oude cijfers verbergen
+        var bullets = GetComponent<AmmoBulletDisplay>();
+        useOldAmmoText = showOldAmmoText || bullets == null || !bullets.enabled;
+        if (!useOldAmmoText && ammoText != null) ammoText.enabled = false;
+
         // Pixelfont over de bestaande tekst leggen; de TextMeshPro-tekst zelf gaat onzichtbaar
-        if (ammoFont != null && ammoText != null)
+        if (useOldAmmoText && ammoFont != null && ammoText != null)
         {
             ammoPixelText = PixelText.Attach(ammoText.rectTransform, ammoFont, PixelText.Align.Left, Color.white);
             ammoPixelText.SizeMultiplier = ammoTextSize;
@@ -70,27 +75,23 @@ public class HUDController : MonoBehaviour
         {
             SetHealth(3, 3);
         }
+
+        if (weapon != null && useOldAmmoText)
+        {
+            weapon.OnAmmoChanged += HandleAmmoChanged;
+            SetAmmo(weapon.CurrentMagazine, weapon.ReserveAmmo);
+        }
     }
 
     private void OnDestroy()
     {
         if (playerHealth != null)
             playerHealth.OnHealthChanged -= SetHealth;
+        if (weapon != null)
+            weapon.OnAmmoChanged -= HandleAmmoChanged;
     }
 
-    private void Update()
-    {
-        // Ammo automatisch bijwerken zonder WeaponController aan te passen
-        if (weapon == null) return;
-
-        if (weapon.CurrentMagazine != lastMagazine || weapon.ReserveAmmo != lastReserve || weapon.IsReloading != lastReloading)
-        {
-            lastMagazine = weapon.CurrentMagazine;
-            lastReserve = weapon.ReserveAmmo;
-            lastReloading = weapon.IsReloading;
-            SetAmmo(lastMagazine, lastReserve);
-        }
-    }
+    private void HandleAmmoChanged(int magazine, int reserve, bool reloading) => SetAmmo(magazine, reserve);
 
     public void SetHealth(int current, int max)
     {
@@ -106,7 +107,7 @@ public class HUDController : MonoBehaviour
 
     public void SetAmmo(int current, int max)
     {
-        if (ammoText == null) return;
+        if (ammoText == null || !useOldAmmoText) return;
 
         current = Mathf.Max(0, current);
         ammoText.text = $"{current:D2} / {max:D2}";

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -34,6 +35,9 @@ public class WeaponController : MonoBehaviour
     private int reserveAmmo;
     private bool isReloading;
     private bool facingRight = true;
+
+    // magazijn, reserve, herladen. Gaat af bij elke verandering (schieten, herladen, pickup, respawn).
+    public event Action<int, int, bool> OnAmmoChanged;
 
     private void Awake()
     {
@@ -143,6 +147,8 @@ public class WeaponController : MonoBehaviour
 
     private void UpdateAmmoUI()
     {
+        OnAmmoChanged?.Invoke(currentMagazine, reserveAmmo, isReloading);
+
         if (ammoText == null)
             return;
 
@@ -172,6 +178,7 @@ public class WeaponController : MonoBehaviour
     }
 
     public int CurrentMagazine => currentMagazine;
+    public int MagazineSize => magazineSize;
     public int ReserveAmmo => reserveAmmo;
     public bool IsReloading => isReloading;
 }

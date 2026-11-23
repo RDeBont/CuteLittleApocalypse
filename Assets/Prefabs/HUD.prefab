@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 6435220037807647360}
   - component: {fileID: 4757041140730141916}
   - component: {fileID: 410801707381103589}
+  - component: {fileID: 9139256872790249892}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -201,10 +202,50 @@ MonoBehaviour:
   - {fileID: -1162975650, guid: 131c0587d2e8f9f4bb703a07e6c95bd5, type: 3}
   - {fileID: 5299767773337131005, guid: 131c0587d2e8f9f4bb703a07e6c95bd5, type: 3}
   ammoText: {fileID: 7069379029708730219}
+  showOldAmmoText: 0
   ammoColor: {r: 0.9490196, g: 0.69411767, b: 0.21960784, a: 1}
   ammoEmptyColor: {r: 0.7882353, g: 0.23137255, b: 0.23137255, a: 1}
   ammoFont: {fileID: 2800000, guid: 535222a1f095c534283e68780bfd4c52, type: 3}
   ammoSeparator: ' : '
+  ammoTextSize: 0.67
+  popupFont: {fileID: 0}
+  popupRect:
+    serializedVersion: 2
+    x: 0
+    y: 40
+    width: 320
+    height: 10
+  popupColor: {r: 1, g: 1, b: 1, a: 1}
+  popupDuration: 1.5
+  popupBlinks: 3
+--- !u!114 &9139256872790249892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6221538874722267195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5def18d61ce107943990908a09cd2290, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AmmoBulletDisplay
+  weapon: {fileID: 0}
+  bulletFull: {fileID: 3929245286136840846, guid: 82a791c88f2c2dd54d995e6047b80d9f, type: 3}
+  bulletEmpty: {fileID: 770644937323272306, guid: 82a791c88f2c2dd54d995e6047b80d9f, type: 3}
+  maxIcons: 10
+  pixelScale: 6.25
+  spacingPixels: 1
+  position: {x: 40, y: 100}
+  font: {fileID: 2800000, guid: 535222a1f095c534283e68780bfd4c52, type: 3}
+  textSize: 0.67
+  textColor: {r: 1, g: 1, b: 1, a: 1}
+  emptyColor: {r: 0.7882353, g: 0.23137255, b: 0.23137255, a: 1}
+  countPrefix: X
+  reloadText: HERLADEN
+  blinkWhenEmpty: 1
+  blinkDuration: 1
+  blinkInterval: 0.12
 --- !u!1 &8609039008077550975
 GameObject:
   m_ObjectHideFlags: 0
