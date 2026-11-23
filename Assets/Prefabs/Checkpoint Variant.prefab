@@ -17,12 +17,8 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 681947058723526824, guid: 112e53277d8be8649b0536f1e3b05dbf, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -1522094174279106952, guid: a47a377c2b782a94381d77896b5ebcbe, type: 3}
-    - target: {fileID: 681947058723526824, guid: 112e53277d8be8649b0536f1e3b05dbf, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 681947058723526824, guid: 112e53277d8be8649b0536f1e3b05dbf, type: 3}
       propertyPath: m_WasSpriteAssigned
@@ -95,6 +91,22 @@ PrefabInstance:
     - target: {fileID: 3401261773567673671, guid: 112e53277d8be8649b0536f1e3b05dbf, type: 3}
       propertyPath: m_Name
       value: Checkpoint Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408131837688444020, guid: 112e53277d8be8649b0536f1e3b05dbf, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.669770
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408131837688444020, guid: 112e53277d8be8649b0536f1e3b05dbf, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.618069
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408131837688444020, guid: 112e53277d8be8649b0536f1e3b05dbf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.209303
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408131837688444020, guid: 112e53277d8be8649b0536f1e3b05dbf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

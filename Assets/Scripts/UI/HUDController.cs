@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -26,7 +27,19 @@ public class HUDController : MonoBehaviour
     [Tooltip("1 = even groot als de rest van de pixel-UI, 0.67 = iets kleiner")]
     [SerializeField, Range(0.3f, 1.5f)] private float ammoTextSize = 0.67f;
 
+    [Header("Popup (bv. CHECKPOINT!)")]
+    [Tooltip("Leeg = hetzelfde font als de ammo")]
+    [SerializeField] private Texture2D popupFont;
+    [Tooltip("Plek in canvas-pixels (320x180), vanaf linksboven")]
+    [SerializeField] private Rect popupRect = new Rect(0, 40, 320, 10);
+    [SerializeField] private Color popupColor = Color.white;
+    [SerializeField] private float popupDuration = 1.5f;
+    [Tooltip("Aantal keer knipperen aan het eind")]
+    [SerializeField] private int popupBlinks = 3;
+
     private PixelText ammoPixelText;
+    private PixelText popupPixelText;
+    private Coroutine popupRoutine;
 
     private int lastMagazine = -1;
     private int lastReserve = -1;
@@ -106,5 +119,38 @@ public class HUDController : MonoBehaviour
             ammoPixelText.Text = reloading ? "HERLADEN..." : $"{current:D2}{ammoSeparator}{max:D2}";
             ammoPixelText.Color = current == 0 && !reloading ? ammoEmptyColor : Color.white;
         }
+    }
+
+    // Korte melding midden in beeld, in het pixelfont van de HUD
+    public void ShowPopup(string message)
+    {
+        Texture2D font = popupFont != null ? popupFont : ammoFont;
+        if (font == null) return;
+
+        if (popupPixelText == null)
+            popupPixelText = PixelText.Create(transform, "PopupText", popupRect, font, PixelText.Align.Center, popupColor, true);
+
+        if (popupRoutine != null) StopCoroutine(popupRoutine);
+        popupRoutine = StartCoroutine(PopupRoutine(message));
+    }
+
+    private IEnumerator PopupRoutine(string message)
+    {
+        popupPixelText.gameObject.SetActive(true);
+        popupPixelText.Text = message;
+
+        float blinkTime = 0.1f;
+        yield return new WaitForSeconds(Mathf.Max(0f, popupDuration - popupBlinks * blinkTime * 2f));
+
+        for (int i = 0; i < popupBlinks; i++)
+        {
+            popupPixelText.gameObject.SetActive(false);
+            yield return new WaitForSeconds(blinkTime);
+            popupPixelText.gameObject.SetActive(true);
+            yield return new WaitForSeconds(blinkTime);
+        }
+
+        popupPixelText.gameObject.SetActive(false);
+        popupRoutine = null;
     }
 }
