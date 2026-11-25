@@ -31,6 +31,10 @@ public class WeaponController : MonoBehaviour
     [Header("Animatie")]
     [SerializeField] private SpelerAnimatie spelerAnimatie;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip shootSound;
+    [SerializeField] private AudioClip reloadSound;
+
     private int currentMagazine;
     private int reserveAmmo;
     private bool isReloading;
@@ -102,6 +106,10 @@ public class WeaponController : MonoBehaviour
 
         Projectile projectile = Instantiate(projectilePrefab, origin, Quaternion.identity);
         projectile.Launch(direction);
+
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(shootSound);
+
         if (spelerAnimatie != null)
         {
             spelerAnimatie.SpeelSchietAnimatie();
@@ -132,6 +140,9 @@ public class WeaponController : MonoBehaviour
     {
         isReloading = true;
         UpdateAmmoUI();
+
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(reloadSound);
 
         yield return new WaitForSeconds(reloadTime);
 
@@ -170,7 +181,7 @@ public class WeaponController : MonoBehaviour
 
     public void RestoreAmmo(int magazine, int reserve)
     {
-        StopAllCoroutines(); 
+        StopAllCoroutines();
         isReloading = false;
         currentMagazine = Mathf.Clamp(magazine, 0, magazineSize);
         reserveAmmo = Mathf.Clamp(reserve, 0, maxReserveAmmo);

@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class JumpController : MonoBehaviour
@@ -36,6 +37,9 @@ public class JumpController : MonoBehaviour
     [Header("Input")]
     [SerializeField] private KeyCode jumpKey = KeyCode.Space;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip jumpSound;
+
     private Rigidbody2D rb;
     private bool isGrounded;
     private bool isJumping;
@@ -52,7 +56,7 @@ public class JumpController : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.interpolation = RigidbodyInterpolation2D.Interpolate;   // geen gehapper met de camera
+        rb.interpolation = RigidbodyInterpolation2D.Interpolate;
 
         if (bodyCollider == null) bodyCollider = GetComponentInChildren<BoxCollider2D>();
         if (bodyCollider == null && groundCheck == null)
@@ -71,7 +75,6 @@ public class JumpController : MonoBehaviour
 
     void OnDisable()
     {
-        // Bv. bij het einde van het level: geen extra zware val achterlaten
         if (rb != null) rb.gravityScale = riseGravityScale;
     }
 
@@ -87,7 +90,6 @@ public class JumpController : MonoBehaviour
 
     void Update()
     {
-        // Input in Update (anders mis je drukken), natuurkunde in FixedUpdate
         if (Input.GetKeyDown(jumpKey)) lastJumpPressedTime = Time.time;
         if (Input.GetKeyUp(jumpKey)) jumpReleased = true;
         jumpHeld = Input.GetKey(jumpKey);
@@ -98,7 +100,6 @@ public class JumpController : MonoBehaviour
         float now = Time.time;
         Vector2 velocity = rb.linearVelocity;
 
-        // Alleen op de grond als je niet meer omhoog gaat: voorkomt dubbel springen vlak na het afzetten
         isGrounded = velocity.y <= 0.01f && CheckGround();
         if (isGrounded)
         {
@@ -113,22 +114,23 @@ public class JumpController : MonoBehaviour
         {
             velocity.y = jumpVelocity;
             isJumping = true;
+
+            // Springgeluid afspelen
+            AudioManager.Instance?.PlaySFX(jumpSound);
+
             isGrounded = false;
             lastJumpPressedTime = float.NegativeInfinity;
             lastGroundedTime = float.NegativeInfinity;
 
-            // Al losgelaten (korte tik of gebufferd)? Dan meteen een lage sprong
             if (!jumpHeld) jumpReleased = true;
         }
 
-        // Jump cut: knop los tijdens het stijgen = lagere sprong
         if (jumpReleased)
         {
             if (isJumping && velocity.y > 0f) velocity.y *= jumpCutMultiplier;
             jumpReleased = false;
         }
 
-        // Sneller vallen dan stijgen, met een maximum
         rb.gravityScale = velocity.y < 0f ? riseGravityScale * fallMultiplier : riseGravityScale;
         if (velocity.y < -maxFallSpeed) velocity.y = -maxFallSpeed;
 
@@ -141,7 +143,6 @@ public class JumpController : MonoBehaviour
         return Physics2D.OverlapBox(center, size, 0f, groundLayer) != null;
     }
 
-    // Dunne strook net onder de voeten, iets smaller dan het lijf
     private void GetGroundBox(out Vector2 center, out Vector2 size)
     {
         if (bodyCollider != null)

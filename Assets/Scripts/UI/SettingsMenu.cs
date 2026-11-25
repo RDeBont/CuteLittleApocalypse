@@ -51,23 +51,24 @@ public class SettingsMenu : MonoBehaviour
     // Bij openen de opgeslagen waarde tonen, zonder meteen opnieuw op te slaan.
     private void OnEnable()
     {
-        SaveManager save = SaveManager.Instance;
-        if (musicSlider != null) musicSlider.SetValueWithoutNotify(save != null ? save.MusicVolume : DefaultVolume);
+        float savedVolume = PlayerPrefs.GetFloat("MusicVolume", 0.8f);
+
+        if (musicSlider != null)
+            musicSlider.SetValueWithoutNotify(savedVolume);
     }
 
     private void OnMusicChanged(float value)
     {
-        if (SaveManager.Instance != null) SaveManager.Instance.SetMusicVolume(value);
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.SetMusicVolume(value);
     }
 
     // Knop: Standaard (zet ook de geluidseffecten terug)
     private void ResetToDefaults()
     {
-        if (SaveManager.Instance != null)
-        {
-            SaveManager.Instance.SetMusicVolume(DefaultVolume);
-            SaveManager.Instance.SetSfxVolume(DefaultVolume);
-        }
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.SetMusicVolume(DefaultVolume);
+
         musicSlider.SetValueWithoutNotify(DefaultVolume);
     }
 
