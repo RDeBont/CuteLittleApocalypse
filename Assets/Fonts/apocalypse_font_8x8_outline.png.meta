@@ -1,0 +1,1198 @@
+fileFormatVersion: 2
+guid: 535222a1f095c534283e68780bfd4c52
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5863674049380461170
+    second: apocalypse_font_8x8_outline_0
+  - first:
+      213: 8072659958733180416
+    second: apocalypse_font_8x8_outline_1
+  - first:
+      213: -2007779095953272675
+    second: apocalypse_font_8x8_outline_2
+  - first:
+      213: -7741715247519348935
+    second: apocalypse_font_8x8_outline_3
+  - first:
+      213: -3004413088355143136
+    second: apocalypse_font_8x8_outline_4
+  - first:
+      213: -8464118740440310139
+    second: apocalypse_font_8x8_outline_5
+  - first:
+      213: 8055813538256996810
+    second: apocalypse_font_8x8_outline_6
+  - first:
+      213: 7408597242693984543
+    second: apocalypse_font_8x8_outline_7
+  - first:
+      213: -6996840115763280387
+    second: apocalypse_font_8x8_outline_8
+  - first:
+      213: -2136528231068157985
+    second: apocalypse_font_8x8_outline_9
+  - first:
+      213: -3972479243110783917
+    second: apocalypse_font_8x8_outline_10
+  - first:
+      213: 7309551463549085192
+    second: apocalypse_font_8x8_outline_11
+  - first:
+      213: 8429520324062725224
+    second: apocalypse_font_8x8_outline_12
+  - first:
+      213: -2493643396262970629
+    second: apocalypse_font_8x8_outline_13
+  - first:
+      213: 1561478927345616442
+    second: apocalypse_font_8x8_outline_14
+  - first:
+      213: -1688504415330536177
+    second: apocalypse_font_8x8_outline_15
+  - first:
+      213: -8475134550116766584
+    second: apocalypse_font_8x8_outline_16
+  - first:
+      213: 4448252318283980360
+    second: apocalypse_font_8x8_outline_17
+  - first:
+      213: 444123861933870846
+    second: apocalypse_font_8x8_outline_18
+  - first:
+      213: -4155296131900334750
+    second: apocalypse_font_8x8_outline_19
+  - first:
+      213: -4682685492485747966
+    second: apocalypse_font_8x8_outline_20
+  - first:
+      213: -7079268659168474097
+    second: apocalypse_font_8x8_outline_21
+  - first:
+      213: -2787048742961783324
+    second: apocalypse_font_8x8_outline_22
+  - first:
+      213: 4507053527321689868
+    second: apocalypse_font_8x8_outline_23
+  - first:
+      213: 8795106173555298846
+    second: apocalypse_font_8x8_outline_24
+  - first:
+      213: 968801149921770995
+    second: apocalypse_font_8x8_outline_25
+  - first:
+      213: -1482753795463711406
+    second: apocalypse_font_8x8_outline_26
+  - first:
+      213: 6244921031563278699
+    second: apocalypse_font_8x8_outline_27
+  - first:
+      213: 9156372910324924269
+    second: apocalypse_font_8x8_outline_28
+  - first:
+      213: 2333057107765092448
+    second: apocalypse_font_8x8_outline_29
+  - first:
+      213: -8922241929571962976
+    second: apocalypse_font_8x8_outline_30
+  - first:
+      213: 20010653100759859
+    second: apocalypse_font_8x8_outline_31
+  - first:
+      213: 2600474907185799269
+    second: apocalypse_font_8x8_outline_32
+  - first:
+      213: -4470338431215117092
+    second: apocalypse_font_8x8_outline_33
+  - first:
+      213: 7277435012158219471
+    second: apocalypse_font_8x8_outline_34
+  - first:
+      213: 9106275497005174618
+    second: apocalypse_font_8x8_outline_35
+  - first:
+      213: -4724410970892921437
+    second: apocalypse_font_8x8_outline_36
+  - first:
+      213: -5025023916819543099
+    second: apocalypse_font_8x8_outline_37
+  - first:
+      213: -7889899172523688680
+    second: apocalypse_font_8x8_outline_38
+  - first:
+      213: 6541911023726712459
+    second: apocalypse_font_8x8_outline_39
+  - first:
+      213: 3157986879572331466
+    second: apocalypse_font_8x8_outline_40
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_0
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 115
+        width: 6
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27aaff71b74ff5150800000000000000
+      internalID: 5863674049380461170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_1
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 99
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00e8fc03679d70070800000000000000
+      internalID: 8072659958733180416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_2
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 99
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d901046cc8fe224e0800000000000000
+      internalID: -2007779095953272675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_3
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 83
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 937426feff6ef8490800000000000000
+      internalID: -7741715247519348935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_4
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 83
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 022be06d63e2e46d0800000000000000
+      internalID: -3004413088355143136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_5
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 83
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58e1453b9d8698a80800000000000000
+      internalID: -8464118740440310139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_6
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 83
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac947944bbffbcf60800000000000000
+      internalID: 8055813538256996810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_7
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 83
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f11a6b690ff90d660800000000000000
+      internalID: 7408597242693984543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_8
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 83
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df50abd4cfa36ee90800000000000000
+      internalID: -6996840115763280387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_9
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 83
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd7b696c4e68952e0800000000000000
+      internalID: -2136528231068157985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_10
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 83
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 354e4ccec2beed8c0800000000000000
+      internalID: -3972479243110783917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_11
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 67
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 806a744145eb07560800000000000000
+      internalID: 7309551463549085192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_12
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 67
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 864c1beb21cabf470800000000000000
+      internalID: 8429520324062725224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_13
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 68
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfa3f310b8cc46dd0800000000000000
+      internalID: -2493643396262970629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_14
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 67
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3681b4bfcc7ba510800000000000000
+      internalID: 1561478927345616442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_15
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 51
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f057b8a2e2a3198e0800000000000000
+      internalID: -1688504415330536177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_16
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 51
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88c66a4a706426a80800000000000000
+      internalID: -8475134550116766584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_17
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 51
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84edf966aed5bbd30800000000000000
+      internalID: 4448252318283980360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_18
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 51
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efec7d2ac48d92600800000000000000
+      internalID: 444123861933870846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_19
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 51
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26d96890f2c6556c0800000000000000
+      internalID: -4155296131900334750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_20
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 51
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20b0381ca52c30fb0800000000000000
+      internalID: -4682685492485747966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_21
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 51
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0c05bc79a261cd90800000000000000
+      internalID: -7079268659168474097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_22
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 35
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ed50184fe96259d0800000000000000
+      internalID: -2787048742961783324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_23
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 35
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0f3eafbd454c8e30800000000000000
+      internalID: 4507053527321689868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_24
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 35
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e12db94677e7e0a70800000000000000
+      internalID: 8795106173555298846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_25
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 35
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3fdb31f438fd17d00800000000000000
+      internalID: 968801149921770995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_26
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 35
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 255f50c67433c6be0800000000000000
+      internalID: -1482753795463711406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_27
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 35
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b69f1b8579a6aa650800000000000000
+      internalID: 6244921031563278699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_28
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 35
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6f3dee36a8f11f70800000000000000
+      internalID: 9156372910324924269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_29
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 35
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 060e905141fa06020800000000000000
+      internalID: 2333057107765092448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_30
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 19
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0af64c3bc34dd2480800000000000000
+      internalID: -8922241929571962976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_31
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 19
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33b5bcd3597174000800000000000000
+      internalID: 20010653100759859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_32
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 19
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5606022762eb61420800000000000000
+      internalID: 2600474907185799269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_33
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 19
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdc55a5b1ea26f1c0800000000000000
+      internalID: -4470338431215117092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_34
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 19
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc46ea70694aef460800000000000000
+      internalID: 7277435012158219471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_35
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 19
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5f46d1415dff5e70800000000000000
+      internalID: 9106275497005174618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_36
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 19
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a518f2c0458f6eb0800000000000000
+      internalID: -4724410970892921437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_37
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 19
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cb01221f57834ab0800000000000000
+      internalID: -5025023916819543099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_38
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 3
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81db31c4182718290800000000000000
+      internalID: -7889899172523688680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_39
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 3
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8651716a6989ca50800000000000000
+      internalID: 6541911023726712459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: apocalypse_font_8x8_outline_40
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 3
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acbc042d55c63db20800000000000000
+      internalID: 3157986879572331466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      apocalypse_font_8x8_outline_0: 5863674049380461170
+      apocalypse_font_8x8_outline_1: 8072659958733180416
+      apocalypse_font_8x8_outline_10: -3972479243110783917
+      apocalypse_font_8x8_outline_11: 7309551463549085192
+      apocalypse_font_8x8_outline_12: 8429520324062725224
+      apocalypse_font_8x8_outline_13: -2493643396262970629
+      apocalypse_font_8x8_outline_14: 1561478927345616442
+      apocalypse_font_8x8_outline_15: -1688504415330536177
+      apocalypse_font_8x8_outline_16: -8475134550116766584
+      apocalypse_font_8x8_outline_17: 4448252318283980360
+      apocalypse_font_8x8_outline_18: 444123861933870846
+      apocalypse_font_8x8_outline_19: -4155296131900334750
+      apocalypse_font_8x8_outline_2: -2007779095953272675
+      apocalypse_font_8x8_outline_20: -4682685492485747966
+      apocalypse_font_8x8_outline_21: -7079268659168474097
+      apocalypse_font_8x8_outline_22: -2787048742961783324
+      apocalypse_font_8x8_outline_23: 4507053527321689868
+      apocalypse_font_8x8_outline_24: 8795106173555298846
+      apocalypse_font_8x8_outline_25: 968801149921770995
+      apocalypse_font_8x8_outline_26: -1482753795463711406
+      apocalypse_font_8x8_outline_27: 6244921031563278699
+      apocalypse_font_8x8_outline_28: 9156372910324924269
+      apocalypse_font_8x8_outline_29: 2333057107765092448
+      apocalypse_font_8x8_outline_3: -7741715247519348935
+      apocalypse_font_8x8_outline_30: -8922241929571962976
+      apocalypse_font_8x8_outline_31: 20010653100759859
+      apocalypse_font_8x8_outline_32: 2600474907185799269
+      apocalypse_font_8x8_outline_33: -4470338431215117092
+      apocalypse_font_8x8_outline_34: 7277435012158219471
+      apocalypse_font_8x8_outline_35: 9106275497005174618
+      apocalypse_font_8x8_outline_36: -4724410970892921437
+      apocalypse_font_8x8_outline_37: -5025023916819543099
+      apocalypse_font_8x8_outline_38: -7889899172523688680
+      apocalypse_font_8x8_outline_39: 6541911023726712459
+      apocalypse_font_8x8_outline_4: -3004413088355143136
+      apocalypse_font_8x8_outline_40: 3157986879572331466
+      apocalypse_font_8x8_outline_5: -8464118740440310139
+      apocalypse_font_8x8_outline_6: 8055813538256996810
+      apocalypse_font_8x8_outline_7: 7408597242693984543
+      apocalypse_font_8x8_outline_8: -6996840115763280387
+      apocalypse_font_8x8_outline_9: -2136528231068157985
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
